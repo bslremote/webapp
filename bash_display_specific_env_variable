@@ -1,0 +1,18 @@
+testfile='local_env_variables'
+rm -f -- $testfile
+touch $testfile
+
+# At this point I have an empty file and can start actual work from here
+env >> $testfile
+
+# Open file and read each line and evaluate if it is the desired value to display
+input=$testfile
+while IFS= read -r line
+do
+  substr=${line:0:5}
+  if [ $substr == "GNOME" ];
+  then
+    echo $line
+  fi
+done < "$input" 
+
