@@ -1,3 +1,4 @@
+test_param=$1
 testfile='local_env_variables'
 rm -f -- $testfile
 touch $testfile
@@ -9,8 +10,8 @@ env >> $testfile
 input=$testfile
 while IFS= read -r line
 do
-  substr=${line:0:5}
-  if [ $substr == "GNOME" ];
+  substr=${line:0:4}
+  if [ $substr == $1 ];
   then
     echo $line
   fi
